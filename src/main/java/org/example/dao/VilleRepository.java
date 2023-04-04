@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface VilleRepository extends JpaRepository<ProduitsEntity,Integer> {
-    Optional<VillesEntity> findVilleEntitiesByVilNumEquals(int id);
+    Optional<VillesEntity> findVilleEntitiesByVilNumEquals(int vil_num);
 }

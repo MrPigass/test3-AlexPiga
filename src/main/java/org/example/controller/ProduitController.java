@@ -6,7 +6,9 @@ import org.example.dao.ProduitRepository;
 import org.example.entites.VillesEntity;
 import org.example.dao.VilleRepository;
 import org.example.exceptions.DuplicateProduitException;
+import org.example.exceptions.ProduitBadRequestException;
 import org.example.exceptions.ProduitNotFoundException;
+import org.example.exceptions.VilleNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,11 +59,16 @@ public class ProduitController
         if (villeOpt.isPresent()) {
             produitEntity.setVilNum(villeOpt.get().getVilNum());
         } else {
-            // Si la ville n'existe pas dans la table Ville, on crée une nouvelle ville
-            VillesEntity villeEntity = new VillesEntity();
-            villeEntity.setNom(ville.getNomVille());
-            VilleEntity savedVilleEntity = villeRepository.save(villeEntity);
-            produitEntity.setVilNum(savedVilleEntity.getVilNum());
+            throw new VilleNotFoundException(produit.getVille());
+        }
+        if (produit.getDescription().length() > 20) {
+            throw new ProduitBadRequestException();
+        }
+        else if (produit.getPoids() < 1 || produit.getPoids() > 1000) {
+            throw new ProduitBadRequestException();
+            /*pas de description ou pas de poids */
+        } else if (produit.getDescription().length() == 0 || produit.getPoids() == 0) {
+            throw new ProduitBadRequestException();
         }
 
         ProduitsEntity produitEntityNew = produitRepository.save(produitEntity);
@@ -72,12 +79,4 @@ public class ProduitController
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
-        /*ProduitsEntity produitEntityNew = produitRepository.save(produitEntity);
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(produitEntityNew.getPrdNum())
-                .toUri();
-        return ResponseEntity.created(uri).build();
-    }*/
 }

@@ -1,7 +1,7 @@
 package org.example.dto;
 
 public class Produit {
-    private int id;
+    private int prd_num;
     private String nom;
     private String description;
     private int poids;
@@ -9,7 +9,7 @@ public class Produit {
     private int cmn_num;
 
     public Produit(int id, String description, int poids, String vil_num) {
-        this.id = id;
+        this.prd_num = id;
         this.nom = nom;
         this.description = description;
         this.poids = poids;
@@ -17,11 +17,11 @@ public class Produit {
     }
 
     public int getId() {
-        return id;
+        return prd_num;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.prd_num = id;
     }
 
     public String getNom() {
@@ -48,7 +48,7 @@ public class Produit {
         this.poids = poids;
     }
 
-    public String getVil_num() {
+    public String getVille() {
         return ville;
     }
 
