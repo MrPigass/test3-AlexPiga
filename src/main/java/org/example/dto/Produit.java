@@ -4,15 +4,16 @@ public class Produit {
     private int id;
     private String nom;
     private String description;
-    private int prix;
-    private int quantite;
+    private int poids;
+    private String ville;
+    private int cmn_num;
 
-    public Produit(int id, String nom, String description, int prix, int quantite) {
+    public Produit(int id, String description, int poids, String vil_num) {
         this.id = id;
         this.nom = nom;
         this.description = description;
-        this.prix = prix;
-        this.quantite = quantite;
+        this.poids = poids;
+        this.ville = vil_num;
     }
 
     public int getId() {
@@ -39,19 +40,27 @@ public class Produit {
         this.description = description;
     }
 
-    public int getPrix() {
-        return prix;
+    public int getPoids() {
+        return poids;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
+    public void setPoids(int poids) {
+        this.poids = poids;
     }
 
-    public int getQuantite() {
-        return quantite;
+    public String getVil_num() {
+        return ville;
     }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
+    public void setVil_num(String vil_num) {
+        this.ville = vil_num;
+    }
+
+    public int getCmn_num() {
+        return cmn_num;
+    }
+
+    public void setCmn_num(int cmn_num) {
+        this.cmn_num = cmn_num;
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ProduitNotFoundException extends RuntimeException {
     public ProduitNotFoundException(int id) {
-        super("Produit "+id+" inexistant");
+        super("Produit "+id+" pas trouvé");
     }
 }
