@@ -1,4 +1,5 @@
 package org.example.controller;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.example.dto.Produit;
 
 import org.example.entites.ProduitsEntity;
@@ -19,14 +20,13 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-public class ProduitController
-{
+public class ProduitController {
     @Autowired
     private ProduitRepository produitRepository;
     @Autowired
     private VilleRepository villeRepository;
 
-    @GetMapping(value="/produits/{id}")
+    @GetMapping(value="/produits/{prd_num}")
     public ResponseEntity<Produit> getProduitById(@PathVariable("id") int id) throws ProduitNotFoundException {
         Optional<ProduitsEntity> opt = produitRepository.findProduitEntitiesByIdEquals(id);
         if (opt.isEmpty()) {
